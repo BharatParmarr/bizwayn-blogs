@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script></script>
+    <title>About US - Bizwayn</title>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --background: #ffffff;
+        --secondary: #1f2937;
+        --accent: #3b82f6;
+        --text-primary: #1f2937;
+        --text-secondary: #4b5563;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-800: #1f2937;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        background-color: var(--background);
+        color: var(--text-primary);
+        line-height: 1.5;
+      }
+
+      nav {
+        background-color: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+
+      .logo img {
+        width: 38px;
+        height: 38px;
+      }
+
+      .logo span {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      nav ul {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        align-items: center;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      nav ul li a:hover {
+        color: var(--primary);
+      }
+
+      .cta-button {
+        background-color: var(--primary);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        font-weight: 500;
+        transition: background-color 0.2s;
+      }
+
+      .cta-button:hover {
+        background-color: var(--primary-dark);
+      }
+      #darkmode {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background-color: var(--primary);
+        color: white;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        font-size: 1.25rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+      }
+
+      #darkmode:hover {
+        transform: scale(1.1);
+      }
+
+      #burger {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        #burger {
+          display: block;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0.5rem;
+        }
+
+        #burger div {
+          width: 24px;
+          height: 2px;
+          background-color: var(--text-primary);
+          margin: 4px 0;
+          transition: 0.3s;
+        }
+
+        nav ul {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: white;
+          flex-direction: column;
+          padding: 1rem;
+          gap: 1rem;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul.show {
+          display: flex;
+          box-shadow: none;
+          height: calc(100vh - 64px);
+        }
+        /* animation */
+        nav ul li {
+          opacity: 0;
+          transform: translateY(-10px);
+          animation: slide 0.3s forwards;
+        }
+        @keyframes slide {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+
+      .dark {
+        --background: #1f2937;
+        --text-primary: #f3f4f6;
+        --text-secondary: #e5e7eb;
+        --gray-800: #f3f4f6;
+      }
+
+      .dark nav {
+        background-color: #111827;
+      }
+
+      .dark .post-card {
+        background-color: #111827;
+      }
+      /* main */
+      main {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      section {
+        margin-bottom: 2rem;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 4rem;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+      }
+      p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+      }
+      ul {
+        list-style: none;
+        padding-left: 1rem;
+        margin-bottom: 1rem;
+      }
+      main li::before {
+        content: "•";
+        color: var(--primary);
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+      }
+      footer {
+        text-align: center;
+        margin-top: 2rem;
+        color: var(--text-secondary);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <img src="./Media/logo.png" alt="Bizwayn Logo" />
+          <span>Bizwayn</span>
+        </a>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blogs/index.html">Insights</a></li>
+          <li><a href="about.html">About</a></li>
+          <!-- <li><a href="contact.html">Contact</a></li> -->
+          <li><a href="join_list.html" class="cta-button">Subscribe</a></li>
+        </ul>
+        <button id="burger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </button>
+      </div>
+    </nav>
+    <h1>About Us</h1>
+    <main>
+      <section>
+        <p>
+          Welcome to <strong>BizWayn</strong>, your ultimate destination for
+          insightful financial knowledge, expert advice, and actionable
+          strategies to help you navigate the ever-evolving world of finance. At
+          BizWayn, we believe that financial literacy is the cornerstone of
+          success, and our mission is to empower individuals and businesses
+          alike with the tools and information they need to make smarter
+          financial decisions.
+        </p>
+      </section>
+
+      <section>
+        <h2>Who We Are</h2>
+        <p>
+          BizWayn was born out of a passion for simplifying complex financial
+          concepts and making them accessible to everyone. Whether you're an
+          entrepreneur looking to grow your business, an investor seeking to
+          maximize returns, or someone just starting their journey toward
+          financial independence, BizWayn is here to guide you every step of the
+          way.
+        </p>
+        <p>
+          Our team consists of seasoned financial experts, industry analysts,
+          and content creators who are dedicated to delivering high-quality,
+          reliable, and up-to-date information. From personal finance tips to
+          in-depth market analysis, we cover a wide range of topics tailored to
+          meet the needs of our diverse audience.
+        </p>
+      </section>
+
+      <section>
+        <h2>What We Do</h2>
+        <p>
+          At BizWayn, we strive to be more than just a blog—we aim to be your
+          trusted partner in achieving financial success. Here’s what you can
+          expect from us:
+        </p>
+        <ul>
+          <li>
+            <strong>Educational Content</strong>: Our articles break down
+            complicated financial jargon into easy-to-understand language. Learn
+            about budgeting, investing, saving, retirement planning, and much
+            more.
+          </li>
+          <li>
+            <strong>Market Insights</strong>: Stay ahead of the curve with our
+            timely updates on global economic trends, stock market movements,
+            cryptocurrency developments, and other key financial news.
+          </li>
+          <li>
+            <strong>Practical Tips</strong>: Get actionable advice on how to
+            manage debt, build wealth, optimize taxes, and create sustainable
+            financial habits.
+          </li>
+          <li>
+            <strong>Success Stories</strong>: Be inspired by real-life stories
+            of people and businesses that have achieved remarkable financial
+            milestones through smart decision-making.
+          </li>
+          <li>
+            <strong>Community Engagement</strong>: Join our growing community of
+            like-minded individuals who share your passion for finance.
+            Participate in discussions, ask questions, and learn from others’
+            experiences.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Why Choose BizWayn?</h2>
+        <p>
+          In today’s fast-paced digital age, there’s no shortage of financial
+          information available online—but not all sources are created equal. At
+          BizWayn, we pride ourselves on offering:
+        </p>
+        <ul>
+          <li>
+            <strong>Accuracy</strong>: Every piece of content undergoes rigorous
+            research and fact-checking to ensure it meets the highest standards
+            of accuracy.
+          </li>
+          <li>
+            <strong>Relevance</strong>: We understand that financial goals vary
+            from person to person. That’s why our content is designed to cater
+            to different stages of life and levels of expertise.
+          </li>
+          <li>
+            <strong>Trustworthiness</strong>: Transparency is at the heart of
+            everything we do. We provide unbiased recommendations and always
+            disclose any potential conflicts of interest.
+          </li>
+          <li>
+            <strong>Innovation</strong>: The financial landscape is constantly
+            changing, and so are we. We embrace new technologies and
+            methodologies to bring you cutting-edge insights.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Our Vision</h2>
+        <p>
+          Our vision at BizWayn is simple yet powerful: To democratize financial
+          education and enable people around the globe to take control of their
+          financial futures. By equipping you with the right knowledge and
+          resources, we hope to inspire confidence, foster growth, and pave the
+          path toward lasting prosperity.
+        </p>
+      </section>
+
+      <section>
+        <h2>Join Us on This Journey</h2>
+        <p>
+          Whether you’re here to gain clarity on your next investment move,
+          explore ways to save smarter, or simply stay informed about the latest
+          financial trends, BizWayn is committed to being your go-to resource.
+          Together, let’s unlock the doors to financial freedom and build a
+          brighter tomorrow.
+        </p>
+        <p>
+          Thank you for choosing BizWayn as your trusted financial companion.
+          We’re excited to have you as part of our community!
+        </p>
+      </section>
+
+      <footer>
+        <p>
+          Have questions or suggestions? Feel free to reach out to us at
+          <a href="mailto:contact@bizwayn.com">contact@bizwayn.com</a>. Follow
+          us on social media to stay connected and never miss an update!
+        </p>
+      </footer>
+    </main>
+    <button id="darkmode">☀︎</button>
+  </body>
+  <script>
+    (function () {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+        console.log("dark mode set");
+      }
+    })();
+    const darkModeButton = document.getElementById("darkmode");
+    const body = document.body;
+
+    darkModeButton.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      if (body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.removeItem("theme");
+      }
+    });
+  </script>
+</html>

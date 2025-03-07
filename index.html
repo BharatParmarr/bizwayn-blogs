@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Expert insights and analysis to help you make informed financial decisions"
+    />
+    <meta
+      name="keywords"
+      content="finance, investing, cryptocurrency, banking, ESG"
+    />
+    <meta name="author" content="Bizwayn" />
+    <link rel="icon" href="./Media/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Bizwayn - Financial Insights</title>
+    <!-- <style></style> -->
+    <link rel="stylesheet" href="styles/styles.css" />
+    <style>
+      /* footer */
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --background: #ffffff;
+        --secondary: #1f2937;
+        --accent: #3b82f6;
+        --text-primary: #1f2937;
+        --text-secondary: #4b5563;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-800: #1f2937;
+        --glow: #2e12ff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+
+      footer {
+        background-color: var(--gray-800);
+        color: var(--background);
+        padding: 2rem 0;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .footer-column {
+        flex: 1;
+      }
+
+      .footer-column h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-column ul {
+        list-style: none;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-column ul li a {
+        color: var(--background);
+        text-decoration: none;
+      }
+
+      .footer-column ul li a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .footer-container {
+          flex-direction: column;
+        }
+
+        .footer-column {
+          margin-bottom: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <!-- <a href="index.html" class="logo"> </a> -->
+        <span class="logo_container">
+          <img class="logo" src="./Media/logo.png" alt="Bizwayn Logo" />
+          <button class="button" data-text="Awesome">
+            <span class="actual-text">&nbsp;Bizwayn&nbsp;</span>
+            <span aria-hidden="true" class="hover-text"
+              >&nbsp;Bizwayn&nbsp;</span
+            >
+          </button></span
+        >
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blogs/index.html">Insights</a></li>
+          <li><a href="about.html">About</a></li>
+          <button class="Btn" onclick="location.href='subscribe.html'">
+            <div class="sign">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-bell-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"
+                />
+              </svg>
+            </div>
+            <div class="text">subscribe</div>
+          </button>
+        </ul>
+        <button id="burger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <h1>Navigate Your Financial Future</h1>
+      <p>
+        Expert insights and analysis to help you make informed financial
+        decisions
+      </p>
+    </section>
+
+    <main class="content">
+      <div class="post-grid"></div>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="subscribe.html">Subscribe</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="blogs/index.html">Insights</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="https://twitter.com">Twitter</a></li>
+            <li><a href="https://linkedin.com">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <button id="darkmode">☀︎</button>
+
+    <script>
+      (function () {
+        if (localStorage.getItem("theme") === "dark") {
+          document.body.classList.add("dark");
+          console.log("dark mode set");
+        }
+      })();
+      const blogPosts = [
+        {
+          title: "The Future of Cryptocurrency",
+          description:
+            "An in-depth analysis of cryptocurrency trends and their impact on traditional financial markets.",
+          image: "./Media/cryptocurrency.jpg",
+          link: "./post/The_Future_of_Cryptocurrency.html",
+        },
+        {
+          title: "Understanding Market Volatility",
+          description:
+            "Expert strategies for navigating market uncertainties and protecting your investments.",
+          image: "./Media/volatility.jpg",
+        },
+        {
+          title: "Sustainable Investing Trends",
+          description:
+            "How ESG factors are reshaping investment strategies and corporate responsibility.",
+          image: "./Media/sustainable.jpg",
+        },
+        {
+          title: "Digital Banking Revolution",
+          description:
+            "The transformation of traditional banking and what it means for consumers.",
+          image: "./Media/digital.jpg",
+        },
+      ];
+
+      const postGrid = document.querySelector(".post-grid");
+      blogPosts.forEach((post) => {
+        postGrid.innerHTML += `
+                <article class="post-card" style="cursor: pointer;" onclick="location.href='${
+                  post.link || "#"
+                }'">
+                    <img src="${post.image}" alt="${post.title}" />
+                    <div class="post-content">
+                        <h2>${post.title}</h2>
+                        <p>${post.description}</p>
+                    </div>
+                </article>
+            `;
+      });
+
+      const burger = document.getElementById("burger");
+      const nav = document.querySelector("nav ul");
+      burger.addEventListener("click", () => {
+        nav.classList.toggle("show");
+      });
+
+      const darkmode = document.getElementById("darkmode");
+      darkmode.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        darkmode.innerText = document.body.classList.contains("dark")
+          ? "☀︎"
+          : "☾";
+      });
+    </script>
+  </body>
+</html>
