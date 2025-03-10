@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Portfolio Shopping</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      h1,
+      h2 {
+        text-align: center;
+      }
+      .portfolio-input {
+        margin: 20px auto;
+        text-align: center;
+      }
+      .portfolio-input input {
+        padding: 8px;
+        width: 200px;
+        font-size: 16px;
+      }
+      .portfolio-input button {
+        padding: 8px 12px;
+        font-size: 16px;
+        margin-left: 10px;
+      }
+      .balance {
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .category {
+        margin: 20px 0;
+      }
+      .item {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 10px;
+        margin: 10px;
+        display: inline-block;
+        width: 280px;
+        vertical-align: top;
+        background: #fafafa;
+      }
+      .item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+      }
+      .item button {
+        margin-top: 10px;
+        padding: 6px 10px;
+        font-size: 14px;
+      }
+      .cart {
+        margin-top: 20px;
+        border-top: 2px solid #333;
+        padding-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Crypto Portfolio Shopping</h1>
+      <div class="portfolio-input">
+        <label for="portfolio">Enter your crypto portfolio value in USD:</label>
+        <input type="number" id="portfolio" placeholder="e.g., 100000" />
+        <button onclick="setPortfolio()">Submit</button>
+      </div>
+      <div class="balance">Available Balance: $<span id="balance">0</span></div>
+
+      <div id="items-container"></div>
+
+      <div class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-list"></ul>
+        <p>Total Spent: $<span id="cart-total">0</span></p>
+      </div>
+    </div>
+
+    <script>
+      // Data as provided
+      let items = {
+        luxeryitems: {
+          cars: [
+            {
+              name: "Audi A8",
+              price: 100000,
+              image:
+                "https://www.audi.com/content/dam/gbp2/experience-audi/models-and-technology/production-models/a8/my2020/1920x1080-gal-prop-tx/A8-1920x1080.jpg",
+            },
+            {
+              name: "Mercedes S Class",
+              price: 130000,
+              image:
+                "https://www.mercedes-benz.com/en/vehicles/passenger-cars/s-class/s-class-sedan/_jcr_content/root/slider/sliderchilditems/slideritem/image/MQ7-0-image-20200622161140/01-mercedes-benz-s-class-sedan-2020-mercedes-benz-s-560-4matic-sedan-c-217-3400x1440.jpeg",
+            },
+          ],
+          watches: [
+            {
+              name: "Rolex",
+              price: 50000,
+              image:
+                "https://www.rolex.com/content/dam/rolex-website/2021/homepage/selection/selection-2021.jpg",
+            },
+            {
+              name: "Omega",
+              price: 30000,
+              image:
+                "https://www.omegawatches.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/2/",
+            },
+            {
+              name: "Tag Heuer",
+              price: 20000,
+              image:
+                "https://www.tagheuer.com/content/dam/brand/2021/homepage/selection/selection-2021.jpg",
+            },
+          ],
+          houses: [
+            {
+              name: "White House",
+              price: 1000000,
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/1/1e/White_House%2C_Washington%2C_D.C..jpg",
+            },
+            {
+              name: "Buckingham Palace",
+              price: 2000000,
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/9/9e/Buckingham_Palace%2C_London_-_April_2009.jpg",
+            },
+          ],
+          yachts: [
+            {
+              name: "Eclipse",
+              price: 5000000,
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/5/5b/Eclipse_%28yacht%29.jpg",
+            },
+            {
+              name: "Dubai",
+              price: 7000000,
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/4/4b/Dubai_%28yacht%29.jpg",
+            },
+          ],
+          jets: [
+            {
+              name: "Boeing 747",
+              price: 10000000,
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/8/8b/Boeing_747-8_in_flight.jpg",
+            },
+            {
+              name: "Airbus A380",
+              price: 20000000,
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/6/6f/Airbus_A380-841_%28Lufthansa%29_AN2107208.jpg",
+            },
+            {
+              name: "Gulfstream G650",
+              price: 30000000,
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/8/8c/Gulfstream_G650_N650GD_01.jpg",
+            },
+          ],
+          Army: [
+            {
+              name: "M1 Abrams",
+              price: 5000000,
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/9/9d/M1A2_Abrams_Tank.jpg",
+            },
+            {
+              name: "F-22 Raptor",
+              price: 10000000,
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/2/2f/F-22_Raptor_in_flight.jpg",
+            },
+            {
+              name: "Nimitz-class aircraft carrier",
+              price: 100000000,
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/6/6d/USS_Nimitz_%28CVN-68%29_in_the_Persian_Gulf.jpg",
+            },
+          ],
+        },
+      };
+
+      // Global variables to hold user's available balance and cart total
+      let availableBalance = 0;
+      let cartTotal = 0;
+
+      // Function to set the portfolio value
+      function setPortfolio() {
+        const input = document.getElementById("portfolio");
+        availableBalance = Number(input.value) || 0;
+        document.getElementById("balance").innerText = availableBalance;
+        input.value = "";
+      }
+
+      // Function to render all items by category
+      function renderItems() {
+        const container = document.getElementById("items-container");
+        container.innerHTML = "";
+        const categories = items.luxeryitems;
+
+        for (const category in categories) {
+          const categoryDiv = document.createElement("div");
+          categoryDiv.classList.add("category");
+          const header = document.createElement("h2");
+          header.innerText =
+            category.charAt(0).toUpperCase() + category.slice(1);
+          categoryDiv.appendChild(header);
+
+          categories[category].forEach((item, index) => {
+            const itemDiv = document.createElement("div");
+            itemDiv.classList.add("item");
+
+            const img = document.createElement("img");
+            img.src = item.image;
+            itemDiv.appendChild(img);
+
+            const name = document.createElement("h3");
+            name.innerText = item.name;
+            itemDiv.appendChild(name);
+
+            const price = document.createElement("p");
+            price.innerText = `Price: $${item.price.toLocaleString()}`;
+            itemDiv.appendChild(price);
+
+            const button = document.createElement("button");
+            button.innerText = "Add to Cart";
+            button.onclick = () => addToCart(item);
+            itemDiv.appendChild(button);
+
+            categoryDiv.appendChild(itemDiv);
+          });
+
+          container.appendChild(categoryDiv);
+        }
+      }
+
+      // Function to add an item to the cart
+      function addToCart(item) {
+        if (availableBalance >= item.price) {
+          availableBalance -= item.price;
+          cartTotal += item.price;
+          updateDisplay();
+
+          // Add to cart list
+          const cartList = document.getElementById("cart-list");
+          const li = document.createElement("li");
+          li.innerText = `${item.name} - $${item.price.toLocaleString()}`;
+          cartList.appendChild(li);
+        } else {
+          alert("Insufficient balance to add this item!");
+        }
+      }
+
+      // Update balance and cart total display
+      function updateDisplay() {
+        document.getElementById("balance").innerText = availableBalance;
+        document.getElementById("cart-total").innerText = cartTotal;
+      }
+
+      // Initial render
+      renderItems();
+    </script>
+  </body>
+</html>
